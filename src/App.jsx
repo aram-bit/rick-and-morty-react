@@ -44,7 +44,7 @@ function App() {
           selectedId={selectedId}
         />
         <CharacterInfo selectedId={selectedId} />
-        <CharacterEpisodes />
+        <CharacterEpisodes selectedId={selectedId} />
       </div>
     </div>
   );

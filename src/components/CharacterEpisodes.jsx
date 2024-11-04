@@ -1,6 +1,29 @@
-import { episodes } from "./data";
-import {ChevronDownIcon} from "@heroicons/react/solid"
-function CharacterEpisodes() {
+/* eslint-disable react/prop-types */
+// import { episodes } from "./data";
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useEffect, useState } from "react";
+import axios from "axios";
+function CharacterEpisodes({ selectedId }) {
+  const [episodes, setEpisodes] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await axios.get(
+          `https://rickandmortyapi.com/api/character/${selectedId}`
+        );
+        const episodeId = data.episode.map((e) => e.split("/").at(-1));
+        // console.log(episodeId);
+        const res = await axios.get(
+          `https://rickandmortyapi.com/api/episode/${episodeId}`
+        );
+        console.log(res.data);
+        setEpisodes([res.data].flat());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [selectedId]);
   return (
     <div className="character_episodes">
       <span className="character_episodes-header">
