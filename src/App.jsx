@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import SearchResult from "./components/SearchResult";
 import CharacterInfo from "./components/CharacterInfo";
+import CharacterEpisodes from "./components/CharacterEpisodes";
 function App() {
   return (
     <div className="app">
@@ -9,6 +10,7 @@ function App() {
       <div className="main">
         <SearchResult />
         <CharacterInfo />
+        <CharacterEpisodes />
       </div>
     </div>
   );

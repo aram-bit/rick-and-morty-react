@@ -181,6 +181,65 @@ body {
   cursor: pointer;
 }
 /* character info end */
+/* character episodes start */
+.character_episodes {
+  display: grid;
+  background-color: var(--slate-800);
+  border-radius: 11px;
+  padding: 0.5rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 21rem;
+  color: var(--slate-500);
+}
+.character_episodes-header {
+  display: flex;
+  color: var(--nav-color);
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem;
+}
+.character_episodes-header .icon {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.character_episodes-header > * {
+  width: 100%;
+}
+.character_episodes-list {
+  display: grid;
+  max-height: 4rem;
+  overflow-y: auto;
+  width: 100%;
+  gap: 0.5rem;
+}
+.character_episode-detail {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.character_episode-detail > li {
+  list-style-type: none;
+  font-size: 0.7rem;
+}
+.episode_date {
+  background-color: var(--slate-500);
+  border-radius: 1rem;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--slate-100);
+}
+.episode_name {
+  width: 60%;
+  flex-shrink: 0;
+}
+.character_episodes-header .icon {
+  width: 1rem;
+}
+/* character episodes end */
 @media screen and (min-width: 500px) {
   .main {
     grid-template-columns: 1fr 1fr;
@@ -214,6 +273,25 @@ body {
   }
   .character_detail > h3 {
     font-size: 0.8rem;
+  }
+  .character_episodes {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 90%;
+    max-width: 20rem;
+  }
+  .character_episodes {
+    margin-top: 0.5rem;
+  }
+  .character_episodes-header > h3 {
+    font-size: 1.3rem;
+  }
+  .character_episodes-header .icon {
+    width: 1rem;
+  }
+  .character_episode-detail > li {
+    list-style-type: none;
+    font-size: 0.7rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -301,5 +379,26 @@ body {
   .character_detail > button {
     padding: 1rem;
     font-size: 1rem;
+  }
+  .character_episodes {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 95%;
+    max-width: 30rem;
+  }
+  .character_episodes-header > h3 {
+    font-size: 1.5rem;
+  }
+  .character_episodes-header .icon {
+    width: 1.5rem;
+  }
+  .character_episodes-header > h3 {
+    font-size: 1.5rem;
+  }
+  .character_episode-detail > li {
+    font-size: 1rem;
+  }
+  .character_episodes-list {
+    max-height: 8rem;
   }
 }
