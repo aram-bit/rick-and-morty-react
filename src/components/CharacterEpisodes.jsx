@@ -6,6 +6,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 function CharacterEpisodes({ selectedId }) {
   const [episodes, setEpisodes] = useState([]);
+  const [sortBy,setSortBy]=useState(true)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -26,15 +27,22 @@ function CharacterEpisodes({ selectedId }) {
     }
     if (selectedId) fetchData();
   }, [selectedId]);
+  let sortedEpisodes;
+  if(sortBy){
+    sortedEpisodes=[...episodes].sort((a,b)=>new Date(a.created)-new Date(b.created));
+  }
+  else{
+    sortedEpisodes=[...episodes].sort((a,b)=>new Date(b.created)-new Date(a.created));
+  }
   return (
     <div className="character_episodes">
       <Toaster />
       <span className="character_episodes-header">
         <h3>List of episodes:</h3>
-        <ChevronDownIcon className="icon" />
+        <ChevronDownIcon className="icon" onClick={()=>setSortBy(is=>!is)} style={{rotate:(sortBy)?"0deg":"180deg"}}/>
       </span>
       <span className="character_episodes-list">
-        {episodes.map((item, index) => {
+        {sortedEpisodes.map((item, index) => {
           return (
             <div key={item.id} className="character_episode-detail">
               <li className="episode_name">
