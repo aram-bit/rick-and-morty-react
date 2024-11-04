@@ -1,7 +1,46 @@
-import { character } from "./data";
-function CharacterInfo() {
+/* eslint-disable react/prop-types */
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+// import { character } from "./data";
+import Loader from "./Loader";
+function CharacterInfo({ selectedId }) {
+  const [character, setCharacter] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+        const res = await axios.get(
+          `https://rickandmortyapi.com/api/character/${selectedId}`
+        );
+        const character = res.data;
+        setCharacter(character);
+      } catch (error) {
+        toast.error(error.response.data.error);
+        // console.log(error.response.data.error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    if (selectedId) fetchData();
+  }, [selectedId]);
+  if (isLoading)
+    return (
+      <div className="character_info">
+        <Loader />
+      </div>
+    );
+  if (!character || !selectedId)
+    return (
+      <div className="character_info" style={{ color: "#fff" }}>
+        please select a character
+      </div>
+    );
   return (
     <div className="character_info">
+      <Toaster position="bottom-center" reverseOrder={false} />
       <span className="character_img">
         <img src={character.image} alt="" />
       </span>

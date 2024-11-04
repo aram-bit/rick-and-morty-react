@@ -10,7 +10,8 @@ import toast, { Toaster } from "react-hot-toast";
 function App() {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [query,setQuery]=useState("");
+  const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -28,13 +29,21 @@ function App() {
     }
     fetchData();
   }, [query]);
+  const handleSelectCharacter = (id) => {
+    setSelectedId((prevId) => (prevId === id ? null : id));
+  };
   return (
     <div className="app">
       <Toaster />
-      <Navbar characters={characters} query={query} setQuery={setQuery}/>
+      <Navbar characters={characters} query={query} setQuery={setQuery} />
       <div className="main">
-        <SearchResult characters={characters} isLoading={isLoading} />
-        <CharacterInfo />
+        <SearchResult
+          characters={characters}
+          isLoading={isLoading}
+          onSelectCharacter={handleSelectCharacter}
+          selectedId={selectedId}
+        />
+        <CharacterInfo selectedId={selectedId} />
         <CharacterEpisodes />
       </div>
     </div>

@@ -1,8 +1,13 @@
-import { EyeIcon } from "@heroicons/react/outline";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import PropTypes from "prop-types";
 import Loader from "./Loader";
 // import { allCharacters } from "./data";
-function SearchResult({ characters, isLoading }) {
+function SearchResult({
+  characters,
+  isLoading,
+  onSelectCharacter,
+  selectedId,
+}) {
   return (
     <div className="search_result">
       {isLoading ? (
@@ -26,8 +31,11 @@ function SearchResult({ characters, isLoading }) {
                   {character.species}-{character.status}
                 </p>
               </span>
-              <span className="search_icon">
-                <EyeIcon />
+              <span
+                className="search_icon"
+                onClick={() => onSelectCharacter(character.id)}
+              >
+                {selectedId === character.id ? <EyeOffIcon /> : <EyeIcon />}
               </span>
             </div>
           );
