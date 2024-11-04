@@ -9,16 +9,19 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         const { data } = await axios.get(
-          "https://rickandmortyapi.com/api/characters"
+          "https://rickandmortyapi.com/api/character"
         );
         setCharacters(data.results);
       } catch (error) {
-        console.log(error.response.data.error);
         toast.error(error.response.data.error);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchData();
@@ -28,7 +31,7 @@ function App() {
       <Toaster />
       <Navbar characters={characters} />
       <div className="main">
-        <SearchResult characters={characters} />
+        <SearchResult characters={characters} isLoading={isLoading} />
         <CharacterInfo />
         <CharacterEpisodes />
       </div>
