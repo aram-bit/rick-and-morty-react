@@ -1,9 +1,10 @@
 import { EyeIcon } from "@heroicons/react/outline";
-import { allCharacters } from "./data";
-function SearchResult() {
+import PropTypes from "prop-types";
+// import { allCharacters } from "./data";
+function SearchResult({characters}) {
   return (
     <div className="search_result">
-      {allCharacters.map((character) => {
+      {characters.map((character) => {
         return (
           <div className="search_item" key={character.id}>
             <img
