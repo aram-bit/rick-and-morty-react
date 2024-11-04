@@ -12,6 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -32,10 +33,19 @@ function App() {
   const handleSelectCharacter = (id) => {
     setSelectedId((prevId) => (prevId === id ? null : id));
   };
+  const handleFavorite = (item) => {
+    setFavorites((prev) => [...prev, item]);
+  };
+  const isAddedToFav = favorites.map((f) => f.id).includes(selectedId);
   return (
     <div className="app">
       <Toaster />
-      <Navbar characters={characters} query={query} setQuery={setQuery} />
+      <Navbar
+        characters={characters}
+        query={query}
+        setQuery={setQuery}
+        favorites={favorites}
+      />
       <div className="main">
         <SearchResult
           characters={characters}
@@ -43,7 +53,11 @@ function App() {
           onSelectCharacter={handleSelectCharacter}
           selectedId={selectedId}
         />
-        <CharacterInfo selectedId={selectedId} />
+        <CharacterInfo
+          selectedId={selectedId}
+          onAddFavorite={handleFavorite}
+          isAddedToFav={isAddedToFav}
+        />
         <CharacterEpisodes selectedId={selectedId} />
       </div>
     </div>

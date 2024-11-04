@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { character } from "./data";
 import Loader from "./Loader";
-function CharacterInfo({ selectedId }) {
+function CharacterInfo({ selectedId, onAddFavorite, isAddedToFav }) {
   const [character, setCharacter] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -55,7 +55,13 @@ function CharacterInfo({ selectedId }) {
         </p>
         <p className="location">last known location:</p>
         <p>{character.location.name}</p>
-        <button>Add to favorite</button>
+        {isAddedToFav ? (
+          <p>is added to favorites</p>
+        ) : (
+          <button onClick={() => onAddFavorite(character)}>
+            Add to favorite
+          </button>
+        )}
       </span>
     </div>
   );
