@@ -3,6 +3,7 @@
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 function CharacterEpisodes({ selectedId }) {
   const [episodes, setEpisodes] = useState([]);
   useEffect(() => {
@@ -16,16 +17,18 @@ function CharacterEpisodes({ selectedId }) {
         const res = await axios.get(
           `https://rickandmortyapi.com/api/episode/${episodeId}`
         );
-        console.log(res.data);
+        // console.log(res.data);
         setEpisodes([res.data].flat());
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        toast.error(error.response.data.error);
       }
     }
-    fetchData();
+    if (selectedId) fetchData();
   }, [selectedId]);
   return (
     <div className="character_episodes">
+      <Toaster />
       <span className="character_episodes-header">
         <h3>List of episodes:</h3>
         <ChevronDownIcon className="icon" />

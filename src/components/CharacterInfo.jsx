@@ -56,7 +56,7 @@ function CharacterInfo({ selectedId, onAddFavorite, isAddedToFav }) {
         <p className="location">last known location:</p>
         <p>{character.location.name}</p>
         {isAddedToFav ? (
-          <p>is added to favorites</p>
+          <p style={{color:"red",fontWeight:"bold"}}>is added to favorites</p>
         ) : (
           <button onClick={() => onAddFavorite(character)}>
             Add to favorite
