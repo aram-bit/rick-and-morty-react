@@ -12,7 +12,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    () => JSON.parse(localStorage.getItem("FAVORITES")) || []
+  );
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -25,8 +27,10 @@ function App() {
         );
         setCharacters(data.results);
       } catch (error) {
-        if (!axios.isCancel()) {toast.error(error.response.data.error);
-        setCharacters([]);}
+        if (!axios.isCancel()) {
+          toast.error(error.response.data.error);
+          setCharacters([]);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -43,9 +47,12 @@ function App() {
     setFavorites((prev) => [...prev, item]);
   };
   const isAddedToFav = favorites.map((f) => f.id).includes(selectedId);
-  const handleDeleteFavorite=(id)=>{
-  setFavorites((prevFav)=>(prevFav.filter(item=>item.id !==id)))
-  }
+  const handleDeleteFavorite = (id) => {
+    setFavorites((prevFav) => prevFav.filter((item) => item.id !== id));
+  };
+  useEffect(() => {
+    localStorage.setItem("FAVORITES", JSON.stringify(favorites));
+  }, [favorites]);
   return (
     <div className="app">
       <Toaster />
