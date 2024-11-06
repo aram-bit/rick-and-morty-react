@@ -12,7 +12,10 @@ function Modal({title,onOpen,open,children}) {
                     <h2 className="title">{title}</h2>
                     <XCircleIcon className="icon" onClick={()=>onOpen(false)}/>
                 </div>
+                <div className="modal_item">
+
                 {children}
+                </div>
             </div>
         </div>
     )

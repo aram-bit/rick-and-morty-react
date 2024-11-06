@@ -110,6 +110,20 @@ body {
   flex-shrink: 0;
   justify-content: center;
 }
+.search_item.fav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.search_item.fav .search_item-img {
+  max-height: 4rem;
+}
+.search_item.fav .search_item-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .search_item-img {
   width: 100%;
   max-width: 4rem;
@@ -277,6 +291,11 @@ body {
   inset: 0;
   background-color: rgba(63, 69, 76, 0.8);
 }
+.modal_item > * {
+  width: 90%;
+  display: flex;
+  margin: 0.5rem;
+}
 /* modal end */
 @media screen and (min-width: 500px) {
   .main {
@@ -290,6 +309,7 @@ body {
     grid-row: 1/2;
     margin: 0.5rem;
   }
+
   .character_info {
     grid-column: 1/2;
     grid-row: 2/3;
@@ -379,6 +399,10 @@ body {
     align-items: center;
     max-width: 25rem;
   }
+  .search_item.fav .search_item-img {
+    max-height: 10rem;
+    width: 30%;
+  }
   .search_item-img {
     grid-column: 1/2;
     object-fit: cover;
@@ -441,5 +465,8 @@ body {
   }
   .character_episodes-list {
     max-height: 8rem;
+  }
+  .modal_item > * {
+    display: grid;
   }
 }

@@ -3,11 +3,10 @@ import Navbar from "./components/Navbar";
 import SearchResult from "./components/SearchResult";
 import CharacterInfo from "./components/CharacterInfo";
 import CharacterEpisodes from "./components/CharacterEpisodes";
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { allCharacters } from "./components/data";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import Modal from "./components/Modal";
 function App() {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,15 +43,18 @@ function App() {
     setFavorites((prev) => [...prev, item]);
   };
   const isAddedToFav = favorites.map((f) => f.id).includes(selectedId);
+  const handleDeleteFavorite=(id)=>{
+  setFavorites((prevFav)=>(prevFav.filter(item=>item.id !==id)))
+  }
   return (
     <div className="app">
       <Toaster />
-      <Modal title="favorite characters" open={true} >hcmdkd;lci</Modal>
       <Navbar
         characters={characters}
         query={query}
         setQuery={setQuery}
         favorites={favorites}
+        onDeleteFavorite={handleDeleteFavorite}
       />
       <div className="main">
         <SearchResult
