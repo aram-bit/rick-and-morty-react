@@ -8,4 +8,7 @@ Characters can be added to favorites by clicking on the button(Add to favorite).
 The episodes that a target character is played in is displayed.
 The Episodes can be sorted according to the oldest and latest.
 Items in favorite cart can be deleted.
-![ScreenRecording2024-11-13113205-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/96196811-4270-4b40-a05d-234d14359cbc)
+
+
+https://github.com/user-attachments/assets/f09e7462-9fc2-4259-8cb0-9434fb73ad7f
+
